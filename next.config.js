@@ -1,15 +1,13 @@
-import type { NextConfig } from "next";
-import type { Configuration as WebpackConfig } from "webpack"; // Import Webpack types
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     domains: ["www.launchuicomponents.com", "assets.aceternity.com"],
   },
-  webpack(config: WebpackConfig) {
+  webpack(config) {
     config.module?.rules?.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"], // Enables SVG import as React components
-      issuer: /\.[jt]sx?$/, // Ensures rule applies to TSX/JSX files
+      use: ["@svgr/webpack"],
+      issuer: /\.[jt]sx?$/,
     });
     return config;
   },
@@ -29,8 +27,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
 
-export default nextConfig
+module.exports = nextConfig;

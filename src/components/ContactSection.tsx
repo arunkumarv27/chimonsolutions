@@ -219,9 +219,6 @@ export default function ContactSection() {
                                 <div style={{ fontSize: "16px", fontWeight: "bold", marginBottom: "4px" }}>
                                     {item.label}
                                 </div>
-                                <div style={{ fontSize: "14px", fontWeight: "bold", marginBottom: "4px" }}>
-                                    {item.phone}
-                                </div>
                                 <div style={{ fontSize: "14px", whiteSpace: "pre-line", fontWeight: "bold" }}>
                                     {item.address}
                                 </div>

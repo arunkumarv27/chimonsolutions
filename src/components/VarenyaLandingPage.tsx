@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useRef } from 'react';
 
-const Chimon SolutionsLandingPage = () => {
+const ChimonSolutionsLandingPage = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
 

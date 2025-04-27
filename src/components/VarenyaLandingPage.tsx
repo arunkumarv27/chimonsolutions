@@ -368,4 +368,4 @@ const ChimonSolutionsLandingPage = () => {
   );
 };
 
-export default Chimon SolutionsLandingPage;
+export default ChimonSolutionsLandingPage;

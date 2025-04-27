@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } from 'matter-js';
 import { motion } from 'framer-motion';
 
-const Chimon SolutionsSplash: React.FC = () => {
+const VarenyaSplash: React.FC = () => {
   const [showSplash, setShowSplash] = useState<boolean>(() => !localStorage.getItem('Chimon SolutionsSplashShown'));
   const sceneRef = useRef<HTMLDivElement>(null);
 
@@ -142,4 +142,4 @@ const Chimon SolutionsSplash: React.FC = () => {
   );
 };
 
-export default Chimon SolutionsSplash;
+export default VarenyaSplash

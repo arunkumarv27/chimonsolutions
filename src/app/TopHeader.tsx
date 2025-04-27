@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhone, FaClock } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa';
 
 const TopHeader = () => {
   console.log('loaded')

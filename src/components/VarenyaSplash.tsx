@@ -2,15 +2,48 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } from 'matter-js';
 import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
 
 const VarenyaSplash: React.FC = () => {
-  const [showSplash, setShowSplash] = useState<boolean>(() => !localStorage.getItem('Chimon SolutionsSplashShown'));
+  const [showSplash, setShowSplash] = useState<boolean>(() => !localStorage.getItem('VarenyaSplashShown'));
   const sceneRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    if (!showSplash) return;
+
+    // SplitText Animation
+    const headingSplit = SplitText.create(headingRef.current, {
+      type: "chars, words, lines",
+      mask: "lines",
+    });
+
+    const paraSplit = SplitText.create(paragraphRef.current, {
+      type: "chars, words, lines",
+      mask: "lines",
+    });
+
+    gsap.from([...headingSplit.chars, ...paraSplit.chars], {
+      yPercent: "random([-100, 100])",
+      rotation: "random(-30, 30)",
+      ease: "back.out",
+      autoAlpha: 0,
+      repeat: 4,
+      yoyo: true,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+    });
+  }, [showSplash]);
 
   useEffect(() => {
 
 
-    localStorage.setItem('Chimon SolutionsSplashShown', 'true');
+    localStorage.setItem('VarenyaSplashShown', 'true');
 
     const engine = Engine.create();
     const world = engine.world;
@@ -116,29 +149,22 @@ const VarenyaSplash: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse opacity-90"></div>
       <div ref={sceneRef} className="absolute inset-0 z-10 pointer-events-auto"></div>
       <div className="relative z-20 flex flex-col items-center justify-center w-full h-full text-center text-white p-4">
-        <motion.h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
+        <h1 ref={headingRef} className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg text-white text-center">
           Welcome to Chimon Solutions
-        </motion.h1>
-        <motion.p className="text-lg md:text-2xl mb-8 drop-shadow"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
+        </h1>
+        <p ref={paragraphRef} className="text-lg md:text-2xl mb-8 drop-shadow text-white text-center">
           Your partner in cutting-edge IT consulting solutions.
-        </motion.p>
+        </p>
+
         <motion.button className="px-6 py-3 bg-white text-purple-700 font-semibold rounded shadow-lg hover:bg-purple-100"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-        >
+
           Get Started
         </motion.button>
-      </div>
     </div>
+    </div >
   );
 };
 
